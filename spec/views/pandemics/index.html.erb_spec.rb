@@ -16,7 +16,7 @@ RSpec.describe "pandemics/index", type: :view do
 
   it "renders a list of pandemics" do
     render
-    assert_select "tr>td", text: "Name".to_s, count: 2
-    assert_select "tr>td", text: "MyText".to_s, count: 2
+    assert_select "div>h5", text: "Name".to_s, count: 2
+    assert_select "div>p", text: "MyText".to_s, count: 2
   end
 end
