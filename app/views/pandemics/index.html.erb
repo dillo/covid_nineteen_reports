@@ -1,0 +1,34 @@
+<% if flash[:notice] %>
+  <div class="alert alert-success" role="alert""><%= notice %></div>
+<% end %>
+
+<h3 class="pt-2 pl-2">Pandemic List</h3>
+<div class="dropdown-divider"></div>
+
+<table class="table table-hover table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pandemics.each do |pandemic| %>
+      <tr>
+        <th scope="row"><%= pandemic.id %></th>
+        <td><%= pandemic.name %></td>
+        <td><%= pandemic.description %></td>
+        <td><%= link_to 'Show', pandemic, class: "badge badge-info" %></td>
+        <td><%= link_to 'Edit', edit_pandemic_path(pandemic), class: "badge badge-warning" %></td>
+        <td><%= link_to 'Destroy', pandemic, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to 'New Pandemic', new_pandemic_path, class: "btn btn-primary", role: "button" %></p>
