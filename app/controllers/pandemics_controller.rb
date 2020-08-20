@@ -1,19 +1,17 @@
 class PandemicsController < ApplicationController
-  before_action :set_pandemic, only: [:show, :edit, :update, :destroy]
+  before_action :pandemic, only: %i[show edit update destroy]
 
   def index
     @pandemics = Pandemic.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @pandemic = Pandemic.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @pandemic = Pandemic.new(pandemic_params)
@@ -50,11 +48,12 @@ class PandemicsController < ApplicationController
   end
 
   private
-    def set_pandemic
-      @pandemic = Pandemic.find(params[:id])
-    end
 
-    def pandemic_params
-      params.require(:pandemic).permit(:name, :description)
-    end
+  def pandemic
+    @pandemic ||= Pandemic.find(params[:id])
+  end
+
+  def pandemic_params
+    params.require(:pandemic).permit(:name, :description)
+  end
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :pandemics
+  resources :pandemics do
+    resources :data_urls
+  end
 
-  root "pandemics#index"
+  root 'pandemics#index'
 end

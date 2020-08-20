@@ -1,0 +1,29 @@
+<%= form_with(model: data_url, local: true) do |form| %>
+  <%= form.hidden_field :pandemic_id, value: @pandemic.id %>
+  <% if data_url.last.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h5><%= pluralize(data_url.last.errors.count, "error") %> prohibited this data url from being saved:</h5>
+      <ul>
+        <% data_url.last.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group ml-3 mr-3">
+    <%= form.label :source_name, class: "font-weight-bold" %>
+    <%= form.text_field :source_name, class: "form-control" %>
+  </div>
+  <div class="form-group ml-3 mr-3">
+    <%= form.label :source_url, class: "font-weight-bold" %>
+    <%= form.text_field :source_url, class: "form-control" %>
+  </div>
+  <div class="form-group ml-3 mr-3">
+    <%= form.label :data_type, class: "font-weight-bold" %>
+    <%= form.text_field :data_type, class: "form-control" %>
+  </div>
+  <div class="form-row w-25 ml-2">
+    <div class="col">
+      <%= form.submit class: "form-control btn btn-primary", role: "button" %>
+    </div>
+  <% end %>

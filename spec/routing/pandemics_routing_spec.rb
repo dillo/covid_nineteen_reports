@@ -1,38 +1,37 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe PandemicsController, type: :routing do
-  describe "routing" do
-    it "routes to #index" do
-      expect(get: "/pandemics").to route_to("pandemics#index")
+  describe 'routing' do
+    it 'routes to #index' do
+      expect(get: '/pandemics').to route_to('pandemics#index')
     end
 
-    it "routes to #new" do
-      expect(get: "/pandemics/new").to route_to("pandemics#new")
+    it 'routes to #new' do
+      expect(get: '/pandemics/new').to route_to('pandemics#new')
     end
 
-    it "routes to #show" do
-      expect(get: "/pandemics/1").to route_to("pandemics#show", id: "1")
+    it 'routes to #show' do
+      expect(get: '/pandemics/1').to route_to('pandemics#show', id: '1')
     end
 
-    it "routes to #edit" do
-      expect(get: "/pandemics/1/edit").to route_to("pandemics#edit", id: "1")
+    it 'routes to #edit' do
+      expect(get: '/pandemics/1/edit').to route_to('pandemics#edit', id: '1')
     end
 
-
-    it "routes to #create" do
-      expect(post: "/pandemics").to route_to("pandemics#create")
+    it 'routes to #create' do
+      expect(post: '/pandemics').to route_to('pandemics#create')
     end
 
-    it "routes to #update via PUT" do
-      expect(put: "/pandemics/1").to route_to("pandemics#update", id: "1")
+    it 'routes to #update via PUT' do
+      expect(put: '/pandemics/1').to route_to('pandemics#update', id: '1')
     end
 
-    it "routes to #update via PATCH" do
-      expect(patch: "/pandemics/1").to route_to("pandemics#update", id: "1")
+    it 'routes to #update via PATCH' do
+      expect(patch: '/pandemics/1').to route_to('pandemics#update', id: '1')
     end
 
-    it "routes to #destroy" do
-      expect(delete: "/pandemics/1").to route_to("pandemics#destroy", id: "1")
+    it 'routes to #destroy' do
+      expect(delete: '/pandemics/1').to route_to('pandemics#destroy', id: '1')
     end
   end
 end
