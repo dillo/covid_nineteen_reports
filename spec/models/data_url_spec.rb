@@ -30,10 +30,10 @@ RSpec.describe DataUrl, type: :model do
     context 'when duplicate source_url' do
       let(:params) { { source_name: 'abcd', source_url: 'http://www.example.com/f.json', data_type: 'json' } }
 
-      it 'must not be valid' do
+      it 'must be valid' do
         pandemic.data_urls.create!(params)
 
-        expect(data_url.valid?).to be(false)
+        expect(data_url.valid?).to be(true)
       end
     end
 
