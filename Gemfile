@@ -13,9 +13,7 @@ gem 'rails', '~> 6.0.3.2'
 gem 'redis', '>= 3.2.1'
 gem 'sass-rails', '>= 6'
 gem 'sidekiq', '~> 4.1.2'
-gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
-# gem 'image_processing', '~> 1.2'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
