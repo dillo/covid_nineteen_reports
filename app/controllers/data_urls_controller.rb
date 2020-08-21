@@ -59,6 +59,6 @@ class DataUrlsController < ApplicationController
   end
 
   def data_url_params
-    params.require(:data_url).permit(:source_name, :source_url, :data_type, :pandemic_id)
+    params.require(:data_url).permit(:source_name, :source_url, :data_type, :description, :pandemic_id)
   end
 end

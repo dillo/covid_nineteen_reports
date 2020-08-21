@@ -17,6 +17,9 @@
               <div class="dropdown-divider"></div>
               <p class="card-text"><%= data_url.source_url %></p>
               <p class="card-subtitle font-italic"><%= data_url.data_type %></p>
+              <% if data_url.description.present? %>
+                <p class="card-text"><%= data_url.description %></p>
+              <% end %>
               <ul class="nav justify-content-left mb-2">
                 <li class="nav-item">
                   <%= link_to 'Edit', edit_pandemic_data_url_path(@pandemic, data_url), class: "badge badge-secondary" %>

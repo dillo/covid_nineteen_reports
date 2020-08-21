@@ -22,6 +22,10 @@
     <%= form.label :data_type, class: "font-weight-bold" %>
     <%= form.text_field :data_type, class: "form-control" %>
   </div>
+  <div class="form-group ml-3 mr-3">
+    <%= form.label :description, class: "font-weight-bold" %>
+    <%= form.text_area :description, class: "form-control" %>
+  </div>
   <div class="form-row w-25 ml-2">
     <div class="col">
       <%= form.submit class: "form-control btn btn-primary", role: "button" %>
