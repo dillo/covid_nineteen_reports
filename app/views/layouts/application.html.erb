@@ -4,16 +4,14 @@
     <title>CovidNineteenReports</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <a class="navbar-brand" href="#">PandemicReports</a>
     </nav>
-    <div class="container-fluid pl-0 pr-0">
+    <div class="container-fluid pl-0 pr-0 min-height">
       <%= yield %>
     </div>
   </body>

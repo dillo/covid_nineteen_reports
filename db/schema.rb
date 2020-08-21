@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_16_011635) do
+ActiveRecord::Schema.define(version: 2020_08_19_131101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "data_urls", force: :cascade do |t|
+    t.string "source_name"
+    t.string "source_url"
+    t.string "data_type"
+    t.bigint "pandemic_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pandemic_id"], name: "index_data_urls_on_pandemic_id"
+  end
 
   create_table "pandemics", force: :cascade do |t|
     t.string "name"
@@ -22,4 +32,5 @@ ActiveRecord::Schema.define(version: 2020_08_16_011635) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "data_urls", "pandemics"
 end

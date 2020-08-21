@@ -1,0 +1,15 @@
+require: rubocop-rails
+Rails/FindBy:
+  Exclude:
+    - node_modules
+    - vendor
+    - public
+    - log
+    - storage
+    - tmp
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
