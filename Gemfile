@@ -22,6 +22,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop-rails', require: false
   gem 'htmlbeautifier'
+  gem 'faker'
 end
 
 group :development do

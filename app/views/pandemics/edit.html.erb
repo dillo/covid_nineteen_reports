@@ -2,9 +2,11 @@
   <div class="col-sm">
     <h3 class="pt-2 pl-3">Edit Pandemic</h3>
     <div class="dropdown-divider"></div>
+
     <%= render 'form', pandemic: @pandemic %>
+
     <div class="col">
-      <%= link_to 'Back', @pandemic, class: "form-control btn btn-primary" %>
+      <%= link_to 'Show', @pandemic, class: "form-control btn btn-primary" %>
     </div>
     <div class="col">
       <%= link_to 'Index', pandemics_path, class: "form-control btn btn-primary" %>

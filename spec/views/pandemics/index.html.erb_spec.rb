@@ -4,19 +4,21 @@ RSpec.describe 'pandemics/index', type: :view do
   before(:each) do
     assign(:pandemics, [
              Pandemic.create!(
-               name: 'Name',
+               name: 'One',
                description: 'MyText'
              ),
              Pandemic.create!(
-               name: 'Name',
-               description: 'MyText'
+               name: 'Two',
+               description: 'Description'
              )
            ])
   end
 
   it 'renders a list of pandemics' do
     render
-    assert_select 'div>h5', text: 'Name'.to_s, count: 2
-    assert_select 'div>p', text: 'MyText'.to_s, count: 2
+    expect(rendered).to match(/One/)
+    expect(rendered).to match(/Two/)
+    expect(rendered).to match(/MyText/)
+    expect(rendered).to match(/Description/)
   end
 end

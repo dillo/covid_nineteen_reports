@@ -41,6 +41,7 @@ class PandemicsController < ApplicationController
 
   def destroy
     @pandemic.destroy
+
     respond_to do |format|
       format.html { redirect_to pandemics_url, notice: 'Pandemic was successfully destroyed.' }
       format.json { head :no_content }

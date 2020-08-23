@@ -1,36 +1,38 @@
 <% if flash[:notice] %>
-  <div class="alert alert-success" role="alert""><%= notice %></div>
+<div class="alert alert-success" role="alert""><%= notice %></div>
 <% end %>
-<ul class="nav justify-content-left mt-2">
+
+<ul class=" nav justify-content-left mt-2">
   <li class="nav-item ml-3">
-    <%= link_to "New URL", new_pandemic_data_url_path(@pandemic), class: "btn btn-primary", role: "button" %>
-  </li>
-  <li class="nav-item ml-2">
-    <%= link_to "Pandemics", pandemics_path, class: "btn btn-primary", role: "button" %>
+    <%= link_to "New Data url", new_data_url_url, class: "btn btn-primary", role: "button" %>
   </li>
 </ul>
+
 <div class="dropdown-divider"></div>
 <div class="card-columns m-3">
+
   <% @data_urls.each do |data_url| %>
-    <div class="card bg-light">
-      <div class="card-body">
-        <h5 class="card-title"><%= data_url.source_name %></h5>
-        <p class="card-text"><%= data_url.source_url %></p>
-        <p class="card-text"><%= data_url.data_type %></p>
-        <ul class="nav justify-content-left mb-2">
-          <li class="nav-item">
-            <%= link_to 'Show', pandemic_data_url_path(@pandemic, data_url), class: "badge badge-secondary" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Edit', edit_pandemic_data_url_path(@pandemic, data_url), class: "badge badge-secondary ml-2" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Destroy', pandemic_data_url_path(@pandemic, data_url), method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-secondary ml-2" %>
-          </li>
-        </ul>
-        <div class="card-footer">
-          <small class="text-muted">Added on: <%= data_url.created_at.to_date %></small>
-        </div>
+  <div class="card bg-light">
+    <div class="card-body">
+      <h5 class="card-title"><%= data_url.source_name %></h5>
+      <p class="card-text"><%= data_url.source_url %></p>
+      <p class="card-text"><%= data_url.data_type %></p>
+      <p class="card-text"><%= data_url.description %></p>
+      <ul class="nav justify-content-left mb-2">
+        <li class="nav-item">
+          <%= link_to 'Show', data_url, class: "badge badge-secondary" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Edit', edit_data_url_path(data_url), class: "badge badge-secondary ml-2" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Destroy', data_url, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-secondary ml-2" %>
+        </li>
+      </ul>
+      <div class="card-footer">
+        <small class="text-muted">Added on: <%= data_url.created_at.to_date %></small>
       </div>
     </div>
+  </div>
   <% end %>
+</div>
