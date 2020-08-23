@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_131101) do
+ActiveRecord::Schema.define(version: 2020_08_23_102146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,18 @@ ActiveRecord::Schema.define(version: 2020_08_19_131101) do
     t.string "source_name"
     t.string "source_url"
     t.string "data_type"
-    t.bigint "pandemic_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pandemic_id"], name: "index_data_urls_on_pandemic_id"
+    t.text "description"
+  end
+
+  create_table "pandemic_data_associations", force: :cascade do |t|
+    t.bigint "pandemic_id", null: false
+    t.bigint "data_url_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["data_url_id"], name: "index_pandemic_data_associations_on_data_url_id"
+    t.index ["pandemic_id"], name: "index_pandemic_data_associations_on_pandemic_id"
   end
 
   create_table "pandemics", force: :cascade do |t|
@@ -32,5 +40,6 @@ ActiveRecord::Schema.define(version: 2020_08_19_131101) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "data_urls", "pandemics"
+  add_foreign_key "pandemic_data_associations", "data_urls"
+  add_foreign_key "pandemic_data_associations", "pandemics"
 end

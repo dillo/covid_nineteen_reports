@@ -83,6 +83,8 @@ GEM
     crass (1.0.6)
     diff-lcs (1.4.4)
     erubi (1.9.0)
+    faker (2.13.0)
+      i18n (>= 1.6, < 2)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.13.1)
@@ -244,9 +246,6 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.7.0)
@@ -279,6 +278,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  faker
   faraday (~> 1.0.1)
   htmlbeautifier
   jbuilder (~> 2.7)
@@ -295,7 +295,6 @@ DEPENDENCIES
   sidekiq (~> 4.1.2)
   spring
   spring-watcher-listen (~> 2.0.0)
-  turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers

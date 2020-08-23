@@ -1,18 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe '/data_urls', type: :request do
-  let(:pandemic) { Pandemic.create!(name: 'Pandemic', description: 'Pandemic Description') }
   let(:valid_attributes) do
-    { source_name: 'CDC', source_url: 'https://www.example.com/foo.json', data_type: 'json', pandemic_id: pandemic.id }
+    { source_name: 'CDC', source_url: 'https://www.example.com/foo.json', data_type: 'json' }
   end
   let(:invalid_attributes) do
-    { source_name: '', source_url: '', data_type: 'bla', pandemic_id: pandemic.id }
+    { source_name: '', source_url: '', data_type: 'bla' }
   end
 
   describe 'GET /index' do
     it 'renders a successful response' do
       DataUrl.create! valid_attributes
-      get pandemic_data_urls_path(pandemic)
+      get data_urls_url
       expect(response).to be_successful
     end
   end
@@ -20,14 +19,14 @@ RSpec.describe '/data_urls', type: :request do
   describe 'GET /show' do
     it 'renders a successful response' do
       data_url = DataUrl.create! valid_attributes
-      get pandemic_data_url_path(pandemic, data_url)
+      get data_url_path(data_url)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /new' do
     it 'renders a successful response' do
-      get new_pandemic_data_url_path(pandemic)
+      get new_data_url_url
       expect(response).to be_successful
     end
   end
@@ -35,7 +34,7 @@ RSpec.describe '/data_urls', type: :request do
   describe 'GET /edit' do
     it 'render a successful response' do
       data_url = DataUrl.create! valid_attributes
-      get edit_pandemic_data_url_path(pandemic, data_url)
+      get edit_data_url_path(data_url)
       expect(response).to be_successful
     end
   end
@@ -44,25 +43,25 @@ RSpec.describe '/data_urls', type: :request do
     context 'with valid parameters' do
       it 'creates a new DataUrl' do
         expect do
-          post pandemic_data_urls_path(pandemic), params: { data_url: valid_attributes }
+          post data_urls_url, params: { data_url: valid_attributes }
         end.to change(DataUrl, :count).by(1)
       end
 
-      it 'redirects to the created pandemic' do
-        post pandemic_data_urls_path(pandemic), params: { data_url: valid_attributes }
-        expect(response).to redirect_to(pandemic_path(pandemic))
+      it 'redirects to the data urls path' do
+        post data_urls_path, params: { data_url: valid_attributes }
+        expect(response).to redirect_to(data_url_path(DataUrl.first))
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new DataUrl' do
         expect do
-          post pandemic_data_urls_path(pandemic), params: { data_url: invalid_attributes }
+          post data_urls_url, params: { data_url: invalid_attributes }
         end.to change(DataUrl, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post pandemic_data_urls_path(pandemic), params: { data_url: invalid_attributes }
+        post data_urls_url, params: { data_url: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -71,28 +70,28 @@ RSpec.describe '/data_urls', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        { source_name: 'CDC EDIT', source_url: 'https://www.example.com/foo.json', data_type: 'json', pandemic_id: pandemic.id }
+        { source_name: 'CDC EDIT', source_url: 'https://www.example.com/foo.json', data_type: 'json' }
       end
 
       it 'updates the requested data_url' do
-        data_url = pandemic.data_urls.create! valid_attributes
-        patch pandemic_data_url_path(pandemic, data_url), params: { data_url: new_attributes }
+        data_url = DataUrl.create! valid_attributes
+        patch data_url_path(data_url), params: { data_url: new_attributes }
         data_url.reload
-        expect(response).to redirect_to(pandemic_path(pandemic))
+        expect(response).to redirect_to(data_url_path(data_url))
       end
 
       it 'redirects to the data_url' do
-        data_url = pandemic.data_urls.create! valid_attributes
-        patch pandemic_data_url_path(pandemic, data_url), params: { data_url: new_attributes }
+        data_url = DataUrl.create! valid_attributes
+        patch data_url_path(data_url), params: { data_url: new_attributes }
         data_url.reload
-        expect(response).to redirect_to(pandemic_path(pandemic))
+        expect(response).to redirect_to(data_url_path(data_url))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        data_url = pandemic.data_urls.create! valid_attributes
-        patch pandemic_data_url_path(pandemic, data_url), params: { data_url: invalid_attributes }
+        data_url = DataUrl.create! valid_attributes
+        patch data_url_path(data_url), params: { data_url: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -100,16 +99,16 @@ RSpec.describe '/data_urls', type: :request do
 
   describe 'DELETE /destroy' do
     it 'destroys the requested data_url' do
-      data_url = pandemic.data_urls.create! valid_attributes
+      data_url = DataUrl.create! valid_attributes
       expect do
-        delete pandemic_data_url_path(pandemic, data_url)
+        delete data_url_path(data_url)
       end.to change(DataUrl, :count).by(-1)
     end
 
     it 'redirects to the data_urls list' do
-      data_url = pandemic.data_urls.create! valid_attributes
-      delete pandemic_data_url_path(pandemic, data_url)
-      expect(response).to redirect_to(pandemic_path(pandemic))
+      data_url = DataUrl.create! valid_attributes
+      delete data_url_path(data_url)
+      expect(response).to redirect_to(data_urls_url)
     end
   end
 end

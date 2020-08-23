@@ -1,46 +1,55 @@
 <div class="row">
   <div class="col-sm">
     <% if flash[:notice] %>
-      <div class="alert alert-success" role="alert""><%= notice %></div>
+    <div class="alert alert-success" role="alert""><%= notice %></div>
     <% end %>
-    <h3 class="pt-2 pl-3"><%= @pandemic.name %></h3>
-    <div class="dropdown-divider"></div>
-    <p class="text-justify pl-3 pr-3"><%= @pandemic.description %></p>
-    <% if @pandemic.data_urls.present? %>
+
+    <h3 class=" pt-2 pl-3"><%= @pandemic.name %></h3>
+      <div class="dropdown-divider"></div>
+      <p class="text-justify pl-3 pr-3"><%= @pandemic.description %></p>
+
+      <%
+=begin%>
+      <% if @pandemic.data_urls.present? %>
       <h5 class="pt-2 pl-3">Data Sources</h5>
       <div class="dropdown-divider"></div>
       <div class="card-columns m-3">
         <% @pandemic.data_urls.each do |data_url| %>
-          <div class="card bg-light">
-            <div class="card-body">
-              <h6 class="card-title"><%= data_url.source_name %></h6>
-              <div class="dropdown-divider"></div>
-              <p class="card-text"><%= data_url.source_url %></p>
-              <p class="card-subtitle font-italic"><%= data_url.data_type %></p>
-              <ul class="nav justify-content-left mb-2">
-                <li class="nav-item">
-                  <%= link_to 'Edit', edit_pandemic_data_url_path(@pandemic, data_url), class: "badge badge-secondary" %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to 'Destroy', pandemic_data_url_path(@pandemic, data_url), method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-secondary ml-2" %>
-                </li>
-              </ul>
-            </div>
+        <div class="card bg-light">
+          <div class="card-body">
+            <h6 class="card-title"><%= data_url.source_name %></h6>
+            <div class="dropdown-divider"></div>
+            <p class="card-text"><%= data_url.source_url %></p>
+            <p class="card-subtitle font-italic"><%= data_url.data_type %></p>
+            <% if data_url.description.present? %>
+            <p class="card-text"><%= data_url.description %></p>
+            <% end %>
+            <ul class="nav justify-content-left mb-2">
+              <li class="nav-item">
+                <%= link_to 'Edit', edit_pandemic_data_url_path(@pandemic, data_url), class: "badge badge-secondary" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Destroy', pandemic_data_url_path(@pandemic, data_url), method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-secondary ml-2" %>
+              </li>
+            </ul>
           </div>
+        </div>
         <% end %>
       </div>
-    <% end %>
-    <div class="dropdown-divider"></div>
-    <div class="form-row w-25 ml-2 mt-3 mb-2">
-      <div class="col">
-        <%= link_to 'Edit', edit_pandemic_path(@pandemic), class: "form-control btn btn-primary" %>
-      </div>
-      <div class="col">
-        <%= link_to 'Add Url', new_pandemic_data_url_path(@pandemic), class: "form-control btn btn-primary" %>
-      </div>
-      <div class="col">
-        <%= link_to 'Index', pandemics_path, class: "form-control btn btn-primary" %>
+      <% end %>
+      <%
+=end%>
+      <div class="dropdown-divider"></div>
+      <div class="form-row w-25 ml-2 mt-3 mb-2">
+        <div class="col">
+          <%= link_to 'Edit', edit_pandemic_path(@pandemic), class: "form-control btn btn-primary" %>
+        </div>
+        <div class="col">
+          <%= link_to 'Destroy', @pandemic, method: :delete, data: { confirm: 'Are you sure?' }, class: "form-control btn btn-primary" %>
+        </div>
+        <div class="col">
+          <%= link_to 'Index', pandemics_path, class: "form-control btn btn-primary" %>
+        </div>
       </div>
     </div>
   </div>
-</div>
