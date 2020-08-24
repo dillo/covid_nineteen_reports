@@ -3,12 +3,8 @@
     <div class="dropdown-divider"></div>
 
     <%= render 'form', data_url: @data_url %>
-
-    <div class="col">
-      <%= link_to 'Show', data_url_path(@data_url), class: "form-control btn btn-primary" %>
-    </div>
-    <div class="col">
-      <%= link_to 'Index', data_urls_url, class: "form-control btn btn-primary" %>
+      <%= link_to 'Show', data_url_path(@data_url), class: "btn btn-primary" %>
+      <%= link_to 'Index', data_urls_url, class: "btn btn-primary" %>
     </div>
   </div>
 </div>

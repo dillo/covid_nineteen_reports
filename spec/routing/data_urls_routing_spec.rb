@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe DataUrlsController, type: :routing do
   describe 'routing' do
     it 'routes to #index' do
-      expect(get: "/data_urls").to route_to('data_urls#index')
+      expect(get: '/data_urls').to route_to('data_urls#index')
     end
 
     it 'routes to #new' do

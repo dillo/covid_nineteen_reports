@@ -26,8 +26,6 @@
     <%= form.label :description, class: "font-weight-bold" %>
     <%= form.text_area :description, class: "form-control" %>
   </div>
-  <div class="form-row w-25 ml-2">
-    <div class="col">
-      <%= form.submit class: "form-control btn btn-primary", role: "button" %>
-    </div>
-  <% end %>
+  <div class="btn-group ml-3" role="group" aria-label="Pandemic New">
+    <%= form.submit class: "btn btn-primary", role: "button" %>
+<% end %>
