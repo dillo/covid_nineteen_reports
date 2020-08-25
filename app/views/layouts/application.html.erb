@@ -8,8 +8,21 @@
     <%= javascript_pack_tag 'application' %>
   </head>
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
       <a class="navbar-brand" href="#">PandemicReports</a>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item <%= menu_status("pandemics") %>">
+            <%= link_to 'Pandemics', pandemics_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item <%= menu_status("data_urls") %>">
+            <%= link_to 'Data-Urls', data_urls_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item <%= menu_status("pandemic_data_associations") %>">
+            <%= link_to 'Pandemic-Data-Associations', pandemic_data_associations_path, class: "nav-link" %>
+          </li>
+        </ul>
+      </div>
     </nav>
     <div class="container-fluid pl-0 pr-0 min-height">
       <%= yield %>

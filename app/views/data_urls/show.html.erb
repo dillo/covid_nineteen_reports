@@ -14,16 +14,10 @@
     <% end %>
 
     <div class="dropdown-divider"></div>
-    <div class="form-row w-25 ml-2">
-      <div class="col">
-        <%= link_to "Edit", edit_data_url_path(@data_url), class: "form-control btn btn-primary" %>
-      </div>
-      <div class="col">
-        <%= link_to 'Destroy', @data_url, method: :delete, data: { confirm: 'Are you sure?' }, class: "form-control btn btn-primary" %>
-      </div>
-      <div class="col">
-        <%= link_to 'Index', data_urls_url, class: "form-control btn btn-primary" %>
-      </div>
+    <div class="btn-group ml-3" role="group" aria-label="Pandemic Controls">
+      <%= link_to "Edit", edit_data_url_path(@data_url), class: "btn btn-primary" %>
+      <%= link_to "Destroy", @data_url, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+      <%= link_to 'Index', data_urls_url, class: "btn btn-primary" %>
     </div>
   </div>
 </div>
