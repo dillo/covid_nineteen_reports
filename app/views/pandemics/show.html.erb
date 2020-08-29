@@ -1,18 +1,30 @@
 <div class="row">
   <div class="col-sm">
     <% if flash[:notice] %>
-    <div class="alert alert-success" role="alert""><%= notice %></div>
+      <div class="alert alert-success" role="alert""><%= notice %></div>
     <% end %>
-
     <h3 class=" pt-2 pl-3"><%= @pandemic.name %></h3>
-      <div class="dropdown-divider"></div>
-      <p class="text-justify pl-3 pr-3"><%= @pandemic.description %></p>
-      <div class="dropdown-divider"></div>
-      <div class="btn-group ml-3" role="group" aria-label="Pandemic Controls">
-        <%= link_to 'Add Data Url', edit_pandemic_path(@pandemic), class: "btn btn-primary" %>
-        <%= link_to 'Edit', edit_pandemic_path(@pandemic), class: "btn btn-primary" %>
-        <%= link_to 'Destroy', @pandemic, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
-        <%= link_to 'Index', pandemics_path, class: "btn btn-primary" %>
-      </div>
+    <div class="dropdown-divider"></div>
+    <p class="text-justify pl-3 pr-3"><%= @pandemic.description %></p>
+    <p class="ml-3">Data Urls:</p>
+    <div class="card-columns m-3">
+      <% @pandemic.data_urls.each do |data_url| %>
+        <div class="card bg-light">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to data_url.source_name, data_url_path(data_url) %></h5>
+            <div class="dropdown-divider"></div>
+            <p class="card-text"><%= data_url.source_url %></p>
+            <p class="card-text"><%= data_url.description %></p>
+            <div class="card-footer">
+              <small class="text-muted">Added on: <%= data_url.created_at.to_date %></small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="btn-group ml-3" role="group" aria-label="Pandemic Controls">
+      <%= link_to 'Edit', edit_pandemic_path(@pandemic), class: "btn btn-primary" %>
+      <%= link_to 'Destroy', @pandemic, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+      <%= link_to 'Index', pandemics_path, class: "btn btn-primary" %>
     </div>
   </div>

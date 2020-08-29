@@ -13,8 +13,8 @@ RSpec.describe 'pandemics/new', type: :view do
 
     assert_select 'form[action=?][method=?]', pandemics_path, 'post' do
       assert_select 'input[name=?]', 'pandemic[name]'
-
       assert_select 'textarea[name=?]', 'pandemic[description]'
+      assert_select 'input[name=?]', 'pandemic[data_url_ids][]'
     end
   end
 end

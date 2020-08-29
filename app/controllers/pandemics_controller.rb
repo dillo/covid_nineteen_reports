@@ -55,6 +55,6 @@ class PandemicsController < ApplicationController
   end
 
   def pandemic_params
-    params.require(:pandemic).permit(:name, :description)
+    params.require(:pandemic).permit(:name, :description, data_url_ids: [])
   end
 end

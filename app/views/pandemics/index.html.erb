@@ -1,20 +1,18 @@
 <% if flash[:notice] %>
-<div class="alert alert-success" role="alert""><%= notice %></div>
+  <div class="alert alert-success" role="alert""><%= notice %></div>
 <% end %>
-
 <p class="ml-3 mt-3"><%= link_to 'New Pandemic', new_pandemic_path, class: "btn btn-primary", role: "button" %></p>
 <div class="dropdown-divider"></div>
 <div class="card-columns m-3">
-
-<% @pandemics.each do |pandemic| %>
-<div class="card bg-light">
-  <div class="card-body">
-    <h5 class="card-title"><%= link_to pandemic.name, pandemic_path(pandemic) %></h5>
-    <div class="dropdown-divider"></div>
-    <p class="card-text"><%= pandemic.description %></p>
-    <div class="card-footer">
-      <small class="text-muted">Added on: <%= pandemic.created_at.to_date %></small>
+  <% @pandemics.each do |pandemic| %>
+    <div class="card bg-light">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to pandemic.name, pandemic_path(pandemic) %></h5>
+        <div class="dropdown-divider"></div>
+        <p class="card-text"><%= pandemic.description %></p>
+        <div class="card-footer">
+          <small class="text-muted">Added on: <%= pandemic.created_at.to_date %></small>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<% end %>
+  <% end %>

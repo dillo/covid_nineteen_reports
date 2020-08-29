@@ -20,5 +20,6 @@ RSpec.describe 'pandemics/index', type: :view do
     expect(rendered).to match(/Two/)
     expect(rendered).to match(/MyText/)
     expect(rendered).to match(/Description/)
+    expect(rendered).to match(/Added/)
   end
 end
