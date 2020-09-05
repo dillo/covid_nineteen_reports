@@ -23,6 +23,9 @@
       <% end %>
     </div>
     <div class="btn-group ml-3" role="group" aria-label="Pandemic Controls">
+      <% if @pandemic.data_urls.any? %>
+        <%= link_to 'Report', generate_report_url(report: { pandemic_id: @pandemic }), method: :post, class: "btn btn-primary" %>
+      <% end %>
       <%= link_to 'Edit', edit_pandemic_path(@pandemic), class: "btn btn-primary" %>
       <%= link_to 'Destroy', @pandemic, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
       <%= link_to 'Index', pandemics_path, class: "btn btn-primary" %>
