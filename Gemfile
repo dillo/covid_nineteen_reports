@@ -9,12 +9,15 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dalli'
 gem 'delivery_boy'
 gem 'jbuilder', '~> 2.7'
+gem 'racecar'
+gem 'redis', '~> 4.0'
 gem 'ruby-kafka'
 gem 'oj'
 gem 'pg', '~> 1.2.3'
 gem 'puma', '~> 4.3.5'
 gem 'rails', '~> 6.0.3.2'
 gem 'sass-rails', '>= 6'
+gem 'sidekiq', '~> 6.1.2'
 gem 'webpacker', '~> 4.0'
 
 group :development, :test do
