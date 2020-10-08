@@ -6,4 +6,12 @@ class DataUrl < ApplicationRecord
   validates :source_url, presence: true, uniqueness: true
   validates :data_type, presence: true
   validates :data_type, inclusion: { in: %w[json rss] }
+
+  def to_hash
+    {
+      name: source_name,
+      url: source_url,
+      type: data_type
+    }
+  end
 end
