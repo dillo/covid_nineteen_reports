@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  # include ErrorHandlers::Redis
+  include ErrorHandlers::RedisErrors
 
   def create
     pandemic = Pandemic.find(reports_params[:pandemic_id])
