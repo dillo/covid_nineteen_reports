@@ -5,4 +5,8 @@ class Pandemic < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
+
+  def presentable_data_urls
+    data_urls.each_with_object([]) { |data_url, acc| acc << data_url.to_hash }
+  end
 end
