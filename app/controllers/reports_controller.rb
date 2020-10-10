@@ -1,15 +1,12 @@
 class ReportsController < ApplicationController
+  # include ErrorHandlers::Redis
+
   def create
     pandemic = Pandemic.find(reports_params[:pandemic_id])
+    CreateReportEventJob.perform_later(pandemic)
 
-    begin
-      CreateReportEventJob.perform_later(pandemic)
-    rescue Redis::ConnectionError, Redis::CannotConnectError => e
-      logger.error "REDIS::ERROR::#{e.message}"
-    ensure
-      redirect_to pandemic_url(pandemic)
-      flash[:notice] = "Report for #{pandemic.name} is being generated and will be available shortly."
-    end
+    redirect_to pandemic_url(pandemic)
+    flash[:notice] = "Report for #{pandemic.name} is being generated and will be available shortly."
   end
 
   private
