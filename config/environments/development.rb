@@ -18,7 +18,15 @@ Rails.application.configure do
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :memory_store
+    config.cache_store = :redis_cache_store, {
+      expires_in: 1.hour,
+      namespace: 'pandemic_reports',
+      redis: {
+        host: '127.0.0.1',
+        port: 6379,
+        db: 0
+      }
+    }
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }
