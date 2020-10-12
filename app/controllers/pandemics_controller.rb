@@ -2,8 +2,7 @@ class PandemicsController < ApplicationController
   before_action :pandemic, only: %i[show edit update destroy]
 
   def index
-    key = 'all-pandemics'
-    @pandemics = Rails.cache.fetch(key) { Pandemic.all.to_a }
+    @pandemics = cache('all-pandemics') { Pandemic.all.to_a }
   end
 
   def show; end
@@ -13,8 +12,7 @@ class PandemicsController < ApplicationController
   end
 
   def edit
-    key = 'all-data_urls'
-    @data_urls = Rails.cache.fetch(key) { DataUrl.all.to_a }
+    @data_urls = cache('all-data_urls') { DataUrl.all.to_a }
   end
 
   def create
@@ -44,8 +42,7 @@ class PandemicsController < ApplicationController
   private
 
   def pandemic
-    key = "show-#{__method__}-#{params[:id]}"
-    @pandemic = Rails.cache.fetch(key) { Pandemic.includes(:data_urls).find(params[:id]) }
+    @pandemic = cache("pandemic-#{params[:id]}") { Pandemic.includes(:data_urls).find(params[:id]) }
   end
 
   def pandemic_params
