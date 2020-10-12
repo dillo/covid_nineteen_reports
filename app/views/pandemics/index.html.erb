@@ -1,10 +1,11 @@
 <% if flash[:notice] %>
-  <div class="alert alert-success" role="alert""><%= notice %></div>
+<div class="alert alert-success" role="alert""><%= notice %></div>
 <% end %>
-<p class="ml-3 mt-3"><%= link_to 'New Pandemic', new_pandemic_path, class: "btn btn-primary", role: "button" %></p>
-<div class="dropdown-divider"></div>
-<div class="card-columns m-3">
-  <% @pandemics.each do |pandemic| %>
+<p class=" ml-3 mt-3"><%= link_to 'New Pandemic', new_pandemic_path, class: "btn btn-primary", role: "button" %></p>
+  <div class="dropdown-divider"></div>
+  <div class="card-columns m-3">
+    <% @pandemics.each do |pandemic| %>
+    <% cache pandemic do %>
     <div class="card bg-light">
       <div class="card-body">
         <h5 class="card-title"><%= link_to pandemic.name, pandemic_path(pandemic) %></h5>
@@ -15,4 +16,5 @@
         </div>
       </div>
     </div>
-  <% end %>
+    <% end %>
+    <% end %>

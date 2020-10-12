@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-sm">
     <% if flash[:notice] %>
-      <div class="alert alert-success" role="alert""><%= notice %></div>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
     <% end %>
     <h3 class=" pt-2 pl-3"><%= @pandemic.name %></h3>
     <div class="dropdown-divider"></div>
@@ -9,22 +11,26 @@
     <p class="ml-3">Data Urls:</p>
     <div class="card-columns m-3">
       <% @pandemic.data_urls.each do |data_url| %>
-        <div class="card bg-light">
-          <div class="card-body">
-            <h5 class="card-title"><%= link_to data_url.source_name, data_url_path(data_url) %></h5>
-            <div class="dropdown-divider"></div>
-            <p class="card-text"><%= data_url.source_url %></p>
-            <p class="card-text"><%= data_url.description %></p>
-            <div class="card-footer">
-              <small class="text-muted">Added on: <%= data_url.created_at.to_date %></small>
-            </div>
+      <% cache data_url do %>
+      <div class="card bg-light">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to data_url.source_name, data_url_path(data_url) %></h5>
+          <div class="dropdown-divider"></div>
+          <p class="card-text"><%= data_url.source_url %></p>
+          <p class="card-text"><%= data_url.description %></p>
+          <div class="card-footer">
+            <small class="text-muted">Added on: <%= data_url.created_at.to_date %></small>
           </div>
         </div>
+      </div>
+      <% end %>
       <% end %>
     </div>
     <div class="btn-group ml-3" role="group" aria-label="Pandemic Controls">
+      <% cache "show_report_button" do %>
       <% if @pandemic.data_urls.any? %>
-        <%= link_to 'Report', generate_report_url(report: { pandemic_id: @pandemic }), method: :post, class: "btn btn-primary" %>
+      <%= link_to 'Report', generate_report_url(report: { pandemic_id: @pandemic }), method: :post, class: "btn btn-primary" %>
+      <% end %>
       <% end %>
       <%= link_to 'Edit', edit_pandemic_path(@pandemic), class: "btn btn-primary" %>
       <%= link_to 'Destroy', @pandemic, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>

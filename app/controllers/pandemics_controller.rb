@@ -2,7 +2,11 @@ class PandemicsController < ApplicationController
   before_action :pandemic, only: %i[show edit update destroy]
 
   def index
-    @pandemics = Pandemic.all
+    key = 'all-pandemics'
+
+    @pandemics = Rails.cache.fetch(key) do
+      Pandemic.all.to_a
+    end
   end
 
   def show; end
@@ -11,19 +15,21 @@ class PandemicsController < ApplicationController
     @pandemic = Pandemic.new
   end
 
-  def edit; end
+  def edit
+    key = 'all-data_urls'
+
+    @data_urls = Rails.cache.fetch(key) do
+      DataUrl.all.to_a
+    end
+  end
 
   def create
     @pandemic = Pandemic.new(pandemic_params)
 
-    respond_to do |format|
-      if @pandemic.save
-        format.html { redirect_to @pandemic, notice: 'Pandemic was successfully created.' }
-        format.json { render :show, status: :created, location: @pandemic }
-      else
-        format.html { render :new }
-        format.json { render json: @pandemic.errors, status: :unprocessable_entity }
-      end
+    if @pandemic.save
+      redirect_to @pandemic, notice: 'Pandemic was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -51,7 +57,11 @@ class PandemicsController < ApplicationController
   private
 
   def pandemic
-    @pandemic ||= Pandemic.find(params[:id])
+    key = "show-#{__method__}-#{params[:id]}"
+
+    @pandemic = Rails.cache.fetch(key) do
+      Pandemic.includes(:data_urls).find(params[:id])
+    end
   end
 
   def pandemic_params

@@ -19,7 +19,7 @@
   </div>
   <div class="py-2 mx-3 mb-3 bg-light">
     <div class="row px-2">
-      <%= form.collection_check_boxes :data_url_ids, DataUrl.all, :id, :source_name, checked: @pandemic.data_url_ids.map(&:to_param) do |c| %>
+      <%= form.collection_check_boxes :data_url_ids, @data_urls, :id, :source_name, checked: @pandemic.data_url_ids.map(&:to_param) do |c| %>
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
           <div class="form-check">
             <%= c.check_box %>
