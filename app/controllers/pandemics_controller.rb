@@ -3,10 +3,7 @@ class PandemicsController < ApplicationController
 
   def index
     key = 'all-pandemics'
-
-    @pandemics = Rails.cache.fetch(key) do
-      Pandemic.all.to_a
-    end
+    @pandemics = Rails.cache.fetch(key) { Pandemic.all.to_a }
   end
 
   def show; end
@@ -17,10 +14,7 @@ class PandemicsController < ApplicationController
 
   def edit
     key = 'all-data_urls'
-
-    @data_urls = Rails.cache.fetch(key) do
-      DataUrl.all.to_a
-    end
+    @data_urls = Rails.cache.fetch(key) { DataUrl.all.to_a }
   end
 
   def create
@@ -51,10 +45,7 @@ class PandemicsController < ApplicationController
 
   def pandemic
     key = "show-#{__method__}-#{params[:id]}"
-
-    @pandemic = Rails.cache.fetch(key) do
-      Pandemic.includes(:data_urls).find(params[:id])
-    end
+    @pandemic = Rails.cache.fetch(key) { Pandemic.includes(:data_urls).find(params[:id]) }
   end
 
   def pandemic_params
