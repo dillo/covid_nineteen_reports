@@ -24,7 +24,6 @@ class DataUrlsController < ApplicationController
   end
 
   def update
-
     if @data_url.update(data_url_params)
       redirect_to @data_url, notice: 'Data Url was successfully updated.'
     else

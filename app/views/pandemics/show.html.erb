@@ -27,7 +27,7 @@
       <% end %>
     </div>
     <div class="btn-group ml-3" role="group" aria-label="Pandemic Controls">
-      <% cache "show_report_button" do %>
+      <% cache "show_report_button_#{@pandemic.id}" do %>
         <% if @pandemic.data_urls.any? %>
           <%= link_to 'Report', generate_report_url(report: { pandemic_id: @pandemic }), method: :post, class: "btn btn-primary" %>
         <% end %>

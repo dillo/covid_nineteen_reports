@@ -9,9 +9,10 @@ class DataUrl < ApplicationRecord
 
   def to_hash
     {
-      name: source_name,
-      url: source_url,
-      type: data_type
+      source_id: id,
+      source_name: source_name,
+      source_url: source_url,
+      source_type: data_type
     }
   end
 end

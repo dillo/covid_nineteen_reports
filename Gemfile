@@ -27,6 +27,7 @@ group :development, :test do
   gem 'faker'
   gem 'htmlbeautifier'
   gem 'pry'
+  gem 'pry-nav'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rubocop-rails', require: false
