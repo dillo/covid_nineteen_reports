@@ -3,6 +3,7 @@ class PandemicsController < ApplicationController
 
   before_action :pandemic, only: %i[show edit update destroy]
   before_action :data_urls, only: %i[new edit]
+  before_action :destroy_pandemics_cache, only: %i[create update destroy]
 
   def index
     @pandemics = cache('all-pandemics') { Pandemic.all.to_a }
@@ -48,6 +49,11 @@ class PandemicsController < ApplicationController
 
   def data_urls
     @data_urls = cache('all-data_urls') { DataUrl.all.to_a }
+  end
+
+  def destroy_pandemics_cache
+    Rails.cache.delete("pandemic-#{params[:id]}")
+    Rails.cache.delete('all-pandemics')
   end
 
   def pandemic_params
