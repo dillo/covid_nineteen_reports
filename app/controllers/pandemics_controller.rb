@@ -6,7 +6,7 @@ class PandemicsController < ApplicationController
   before_action :destroy_pandemics_cache, only: %i[create update destroy]
 
   def index
-    @pandemics = cache('all-pandemics') { Pandemic.all.to_a }
+    @pandemics = Pandemics::Factory::All.manufacture.get
   end
 
   def show; end
@@ -44,7 +44,8 @@ class PandemicsController < ApplicationController
   private
 
   def pandemic
-    @pandemic = cache("pandemic-#{params[:id]}") { Pandemic.includes(:data_urls).find(params[:id]) }
+    @pandemic =
+      cache("pandemic-#{params[:id]}") { Pandemic.includes(:data_urls).find(params[:id]) }
   end
 
   def data_urls
