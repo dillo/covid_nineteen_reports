@@ -1,6 +1,6 @@
 module Pandemics
   module Factory
-    class All
+    class Index
       CACHE_KEY = 'all-pandemics'
 
       attr_reader :cache_handler, :model

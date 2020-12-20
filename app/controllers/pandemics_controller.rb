@@ -1,18 +1,19 @@
 class PandemicsController < ApplicationController
   include ErrorHandlers::RedisErrors
 
-  before_action :pandemic, only: %i[show edit update destroy]
-  before_action :data_urls, only: %i[new edit]
+  before_action :data_urls, only: :edit
   before_action :destroy_pandemics_cache, only: %i[create update destroy]
 
   def index
-    @pandemics = Pandemics::Factory::All.manufacture.get
+    @pandemics = Pandemics::Factory::Index.manufacture.get
   end
 
-  def show; end
+  def show;
+    @pandemic = Pandemics::Factory::Show.manufacture(params[:id]).get
+  end
 
   def new
-    @pandemic = Pandemic.new
+    @pandemic = Pandemics::Factory::New.manufacture.get
   end
 
   def edit; end
@@ -42,11 +43,6 @@ class PandemicsController < ApplicationController
   end
 
   private
-
-  def pandemic
-    @pandemic =
-      cache("pandemic-#{params[:id]}") { Pandemic.includes(:data_urls).find(params[:id]) }
-  end
 
   def data_urls
     @data_urls = cache('all-data_urls') { DataUrl.all.to_a }
